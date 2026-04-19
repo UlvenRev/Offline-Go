@@ -30,10 +30,10 @@ public class PlaceStones : MonoBehaviour, IPointerDownHandler
         int gridIndexX = (int)(Math.Round(clickPosition.x / cellSize) + gridSize / 2);
         int gridIndexY = (int)(Math.Round(clickPosition.y / cellSize) + gridSize / 2);
         
+        Vector3 snappingPos = grid.GetWorldPosition(gridIndexX, gridIndexY);
+        
         // Get the collider - if we clicked on the Stone Layer, the collider won't be null, and we'll remove the stone
-        Collider2D hitCollider = Physics2D.OverlapPoint(clickPosition, stoneLayer);
-        Debug.Log(hitCollider);
-        Debug.Log(grid.CheckPosition(gridIndexX, gridIndexY));
+        Collider2D hitCollider = Physics2D.OverlapPoint(snappingPos, stoneLayer);
         
         if (hitCollider != null)  // Remove the stone
         {
